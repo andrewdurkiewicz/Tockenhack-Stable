@@ -6,10 +6,10 @@ services:
       - redis
       - postgres
     environment: &environment
-      - TOKEN_APP_SEED=immune beauty broken clinic coast peasant tray general cattle bracket nose infant
-      - TOKEN_APP_USERNAME=AndrewsBot1245
-      - TOKEN_APP_NAME=The Bot
-      - TOKEN_APP_AVATAR=
+      - TOKEN_APP_SEED=bunker rally flip abstract plastic page they boy unique fence decorate city
+      - TOKEN_APP_USERNAME=ForgottenSandPresident
+      - TOKEN_APP_NAME=Your Local Sand God
+      - TOKEN_APP_AVATAR=attachments/sand.jpg
       - REDIS_URL=redis://h:rlcMWNrxXgqS0xM8aWCYuE0R@redis:6379
       - DATABASE_URL=postgres://token:va5uOdJBqu2dZ1@postgres:5432/token
       - LOG_LEVEL=INFO
