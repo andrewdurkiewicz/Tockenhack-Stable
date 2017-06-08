@@ -33,14 +33,19 @@ function onMessage(session, message) {
 
 function onCommand(session, command) {
   switch (command.content.value) {
-    case 'ping':
-      pong(session)
+    case 'Physics':
+      Physics(session)
       break
-    case 'STEM':
-      STEM(session)
+    case 'Mathematics':
+      Mathematics(session)
       break
-    case 'donate':
-      donate(session)
+    case 'Chemistry':
+      Chemistry(session)
+      break
+    case 'Biology':
+      Biology(session)
+    case 'Business':
+      Business(session)
       break
     case 'Arts':
       Arts(session)
@@ -78,26 +83,84 @@ function welcome(session) {
 
 function Arts(session) {
     session.reply(SOFA.Message({
-      body: "`Art is the most intense mode of individualism that the world has known. (Oscar Wilde)`",
       attachments: [{
         "type": "image",
-        "url": "monalisa.jpg"
-      }]
+        "url": "finearts.jpg"
+
+      }],
+      showKeyboard: false,
     }))
-  sendText(session, `You have chosen to aid a student within the fine arts. Below are three candidates who fit this selection:`)
+  sendText(session, `\"Art is the most intense mode of individualism that the world has known.\" \n-Oscar Wilde`)
+  sendText(session, `You have chosen to aid a student studying fine arts. Below are three candidates who fit this selection:`)
 
 }
 
 // example of how to store state on each user
-function STEM(session) {
-  sendMessage(session, `Pong`)
+function Physics(session) {
+    session.reply(SOFA.Message({
+      attachments: [{
+        "type": "image",
+        "url": "newton.jpg"
+
+      }],
+      showKeyboard: false,
+    }))
+  sendText(session, `\"Not only is the Universe stranger than we think, it is stranger than we can think.\" \n-Werner Heisenberg`)
+  sendText(session, `You have chosen to aid a student studying physics. Below are three candidates who fit this selection:`)
+
 }
 
-function donate(session) {
-  // request $1 USD at current exchange rates
-  Fiat.fetch().then((toEth) => {
-    session.requestEth(toEth.USD(1))
-  })
+function Chemistry(session) {
+    session.reply(SOFA.Message({
+      attachments: [{
+        "type": "image",
+        "url": "chem.jpg"
+
+      }],
+      showKeyboard: false,
+    }))
+  sendText(session, `\"We must reason in natural philosophy not from what we hope, or even expect, but from what we perceive.\" \n-Humphry Davy`)
+  sendText(session, `You have chosen to aid a student studying chemistry. Below are three candidates who fit this selection:`)
+
+}
+function Biology(session) {
+    session.reply(SOFA.Message({
+      attachments: [{
+        "type": "image",
+        "url": "dna.jpg"
+
+      }],
+      showKeyboard: false,
+    }))
+  sendText(session, `\"Biology is the study of complicated things that have the appearance of having been designed with a purpose.\" \n-Richard Dawkins`)
+  sendText(session, `You have chosen to aid a student studying biology. Below are three candidates who fit this selection:`)
+
+}
+function Mathematics(session) {
+    session.reply(SOFA.Message({
+      attachments: [{
+        "type": "image",
+        "url": "pi.jpg"
+
+      }],
+      showKeyboard: false,
+    }))
+  sendText(session, `\"Mathematics is the music of reason.\" \n-James Joseph Sylvester`)
+  sendText(session, `You have chosen to aid a student studying mathematics. Below are three candidates who fit this selection:`)
+
+}
+
+function Business(session) {
+    session.reply(SOFA.Message({
+      attachments: [{
+        "type": "image",
+        "url": "Business.jpg"
+
+      }],
+      showKeyboard: false,
+    }))
+  sendText(session, '\"If you want to succeed you should strike out on new paths, rather than travel the worn paths of accepted success.\" \n-John D. Rockefeller')
+  sendText(session, `You have chosen to aid a student studying business. Below are three candidates who fit this selection:`)
 }
 
 // HELPERS
@@ -106,20 +169,16 @@ function sendText(session,message){
 }
 function sendMessage(session, message) {
   let controls = [
-    {type: 'button', label: 'Arts', value: 'Arts'},
-    {type: 'button', label: 'Business', value: 'donate'},
-
-    {
-    type: 'group', 
+    {type: 'button', label: 'Fine Arts', value: 'Arts'},
+    {type: 'button', label: 'Business', value: 'Business'},
+    {type: 'group', 
     label: 'S.T.E.M', 
     controls: [
-                {type: 'button', label: 'Mathematics', value: 'ping'},
-                {type: 'button', label: 'Physics', value: 'ping'},
-                {type: 'button', label: 'Chemistry', value: 'ping'},
-                {type: 'button', label: 'Biology', value: 'ping'}
-                ],
-    value: 'ping'}
-  ]
+                {type: 'button', label: 'Mathematics', value: 'Mathematics'},
+                {type: 'button', label: 'Physics', value: 'Physics'},
+                {type: 'button', label: 'Chemistry', value: 'Chemistry'},
+                {type: 'button', label: 'Biology', value: 'Biology'}
+                ]}]
   session.reply(SOFA.Message({
     body: message,
     controls: controls,
