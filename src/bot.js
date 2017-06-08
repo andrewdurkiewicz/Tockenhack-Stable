@@ -23,6 +23,7 @@ bot.onEvent = function(session, message) {
     case 'PaymentRequest':
       welcome(session)
       break
+
   }
 }
 
@@ -35,11 +36,14 @@ function onCommand(session, command) {
     case 'ping':
       pong(session)
       break
-    case 'count':
-      count(session)
+    case 'STEM':
+      STEM(session)
       break
     case 'donate':
       donate(session)
+      break
+    case 'Arts':
+      Arts(session)
       break
     }
 }
@@ -69,18 +73,24 @@ function onPayment(session, message) {
 // STATES
 
 function welcome(session) {
-  sendMessage(session, `Hello Token!`)
+  sendMessage(session, `Which academic program would you like to sponsor?`)
 }
 
-function pong(session) {
-  sendMessage(session, `Pong`)
+function Arts(session) {
+    session.reply(SOFA.Message({
+      body: "`Art is the most intense mode of individualism that the world has known. (Oscar Wilde)`",
+      attachments: [{
+        "type": "image",
+        "url": "monalisa.jpg"
+      }]
+    }))
+  sendText(session, `You have chosen to aid a student within the fine arts. Below are three candidates who fit this selection:`)
+
 }
 
 // example of how to store state on each user
-function count(session) {
-  let count = (session.get('count') || 0) + 1
-  session.set('count', count)
-  sendMessage(session, `${count}`)
+function STEM(session) {
+  sendMessage(session, `Pong`)
 }
 
 function donate(session) {
@@ -91,12 +101,24 @@ function donate(session) {
 }
 
 // HELPERS
-
+function sendText(session,message){
+    session.reply(message)
+}
 function sendMessage(session, message) {
   let controls = [
-    {type: 'button', label: 'Ping', value: 'ping'},
-    {type: 'button', label: 'Count', value: 'count'},
-    {type: 'button', label: 'Donate', value: 'donate'}
+    {type: 'button', label: 'Arts', value: 'Arts'},
+    {type: 'button', label: 'Business', value: 'donate'},
+
+    {
+    type: 'group', 
+    label: 'S.T.E.M', 
+    controls: [
+                {type: 'button', label: 'Mathematics', value: 'ping'},
+                {type: 'button', label: 'Physics', value: 'ping'},
+                {type: 'button', label: 'Chemistry', value: 'ping'},
+                {type: 'button', label: 'Biology', value: 'ping'}
+                ],
+    value: 'ping'}
   ]
   session.reply(SOFA.Message({
     body: message,
