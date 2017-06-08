@@ -75,7 +75,6 @@ function onPayment(session, message) {
   }
 }
 
-// STATES
 
 function welcome(session) {
   sendMessage(session, `Which academic program would you like to sponsor?`)
@@ -92,7 +91,13 @@ function Arts(session) {
     }))
   sendText(session, `\"Art is the most intense mode of individualism that the world has known.\" \n-Oscar Wilde`)
   sendText(session, `You have chosen to aid a student studying fine arts. Below are three candidates who fit this selection:`)
-
+  let controls = [
+  {type: 'button', label: 'Brandon', value: 'Arts'},
+  {type: 'button', label: 'Jane Smith', value: 'Business'}]
+  session.reply(SOFA.Message({
+  controls: controls,
+  showKeyboard: false,
+  }))
 }
 
 // example of how to store state on each user
