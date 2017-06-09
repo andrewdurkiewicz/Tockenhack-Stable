@@ -6,8 +6,8 @@ services:
       - redis
       - postgres
     environment: &environment
-      - TOKEN_APP_SEED=bid wheat idea index crater menu travel almost priority resource breeze patrol
-      - TOKEN_APP_USERNAME=SponsorAGrad
+      - TOKEN_APP_SEED=december route jeans ring month crowd engage orphan evil door drift tuition
+      - TOKEN_APP_USERNAME=GraduateSponsor
       - TOKEN_APP_NAME=Graduate Sponsorship Bot
       - TOKEN_APP_AVATAR=attachments/cap.jpg
       - REDIS_URL=redis://h:rlcMWNrxXgqS0xM8aWCYuE0R@redis:6379
