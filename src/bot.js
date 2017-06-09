@@ -1,6 +1,7 @@
 const Bot = require('./lib/Bot')
 const SOFA = require('sofa-js')
 const Fiat = require('./lib/Fiat')
+const Web3 = require('./lib/web3')
 
 let bot = new Bot()
 
@@ -50,6 +51,8 @@ function onCommand(session, command) {
     case 'Arts':
       Arts(session)
       break
+    case 'Init':
+      welcome(session)
     }
 }
 
@@ -84,93 +87,118 @@ function Arts(session) {
     session.reply(SOFA.Message({
       attachments: [{
         "type": "image",
-        "url": "finearts.jpg"
-
+        "url": "art.jpeg"
       }],
-      showKeyboard: false,
     }))
-  sendText(session, `\"Art is the most intense mode of individualism that the world has known.\" \n-Oscar Wilde`)
-  sendText(session, `You have chosen to aid a student studying fine arts. Below are three candidates who fit this selection:`)
+  let body = `\"Art is the most intense mode of individualism that the world has known.\" \n-Oscar Wilde
+  \nYou have chosen to aid a student studying fine arts. Below are three candidates who fit this selection:`
   let controls = [
-  {type: 'button', label: 'Brandon', value: 'Arts'},
-  {type: 'button', label: 'Jane Smith', value: 'Business'}]
+    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Go Back', value: 'Init'}]
   session.reply(SOFA.Message({
-  controls: controls,
-  showKeyboard: false,
+    body: body,
+    controls: controls,
+    showKeyboard: false,
   }))
 }
-
-// example of how to store state on each user
 function Physics(session) {
     session.reply(SOFA.Message({
       attachments: [{
         "type": "image",
-        "url": "newton.jpg"
+        "url": "physics.jpeg"
 
       }],
       showKeyboard: false,
     }))
-  sendText(session, `\"Not only is the Universe stranger than we think, it is stranger than we can think.\" \n-Werner Heisenberg`)
-  sendText(session, `You have chosen to aid a student studying physics. Below are three candidates who fit this selection:`)
-
+  let body = `\"Not only is the Universe stranger than we think, it is stranger than we can think.\" \n-Werner Heisenberg
+  \nYou have chosen to aid a student studying physics. Below are three candidates who fit this selection:`
+  let controls = [
+    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Go Back', value: 'Init'}]
+  session.reply(SOFA.Message({
+    body: body,
+    controls: controls,
+    showKeyboard: false,
+  }))
 }
-
 function Chemistry(session) {
     session.reply(SOFA.Message({
       attachments: [{
         "type": "image",
-        "url": "chem.jpg"
-
+        "url": "chemistry.jpeg"
       }],
       showKeyboard: false,
     }))
-  sendText(session, `\"We must reason in natural philosophy not from what we hope, or even expect, but from what we perceive.\" \n-Humphry Davy`)
-  sendText(session, `You have chosen to aid a student studying chemistry. Below are three candidates who fit this selection:`)
-
+  let body = `\"We must reason in natural philosophy not from what we hope, or even expect, but from what we perceive.\" \n-Humphry Davy
+  \nYou have chosen to aid a student studying chemistry. Below are three candidates who fit this selection:`
+  let controls = [
+    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Go Back', value: 'Init'}]
+  session.reply(SOFA.Message({
+    body: body,
+    controls: controls,
+    showKeyboard: false,
+  }))
 }
+
 function Biology(session) {
     session.reply(SOFA.Message({
       attachments: [{
         "type": "image",
-        "url": "dna.jpg"
-
+        "url": "frog.jpeg"
       }],
       showKeyboard: false,
     }))
-  sendText(session, `\"Biology is the study of complicated things that have the appearance of having been designed with a purpose.\" \n-Richard Dawkins`)
-  sendText(session, `You have chosen to aid a student studying biology. Below are three candidates who fit this selection:`)
-
+  let body = `\"Biology is the study of complicated things that have the appearance of having been designed with a purpose.\" \n-Richard Dawkins
+  \nYou have chosen to aid a student studying biology. Below are three candidates who fit this selection:`
+  let controls = [
+    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Go Back', value: 'Init'}]
+  session.reply(SOFA.Message({
+    body: body,
+    controls: controls,
+    showKeyboard: false,
+  }))
 }
+
 function Mathematics(session) {
     session.reply(SOFA.Message({
       attachments: [{
         "type": "image",
-        "url": "pi.jpg"
-
-      }],
-      showKeyboard: false,
-    }))
-  sendText(session, `\"Mathematics is the music of reason.\" \n-James Joseph Sylvester`)
-  sendText(session, `You have chosen to aid a student studying mathematics. Below are three candidates who fit this selection:`)
-
-}
-
+        "url": "math.jpeg"
+      }]}))
+  let body = `\"Mathematics is the music of reason.\" \n-James Joseph Sylvester
+  \nYou have chosen to aid a student studying mathematics. Below are three candidates who fit this selection:`
+  let controls = [
+    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Go Back', value: 'Init'}]
+  session.reply(SOFA.Message({
+        body: body,
+            controls: controls,
+                showKeyboard: false,}))}
 function Business(session) {
     session.reply(SOFA.Message({
       attachments: [{
         "type": "image",
-        "url": "Business.jpg"
-
+        "url": "business.jpeg"
       }],
-      showKeyboard: false,
-    }))
-  sendText(session, '\"If you want to succeed you should strike out on new paths, rather than travel the worn paths of accepted success.\" \n-John D. Rockefeller')
-  sendText(session, `You have chosen to aid a student studying business. Below are three candidates who fit this selection:`)
-}
-
-// HELPERS
-function sendText(session,message){
-    session.reply(message)
+      showKeyboard: false,}))
+  let body = `\"If you want to succeed you should strike out on new paths, rather than travel the worn paths of accepted success.\" \n-John D. Rockefeller
+  \nYou have chosen to aid a student studying business. Below are three candidates who fit this selection:`
+  let controls = [
+    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Go Back', value: 'Init'}]
+  session.reply(SOFA.Message({
+    body: body,
+    controls: controls,
+    showKeyboard: false,
+  }))
 }
 function sendMessage(session, message) {
   let controls = [

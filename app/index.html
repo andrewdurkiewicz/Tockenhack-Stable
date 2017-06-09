@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link rel="shortcut icon" href="img/favicon.png">
+
+  <title>SeedScholar</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Superhero Bootstrap theme -->
+  <link href="css/simplex.bootstrap.min.css" rel="stylesheet">  
+
+  <style type="text/css" media="screen">
+    @media screen {
+      .badge_large {
+        display: inline-block;
+        min-width: 10px;
+        padding: 3px 20px;
+        font-size: 18px;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 1;
+        vertical-align: middle;
+        white-space: nowrap;
+        text-align: center;
+        background-color: #616161;
+        border-radius: 5px;
+      }
+    }</style>
+  </head>
+
+    <script>
+
+// isGeth = false;
+
+// function init() {
+
+//   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+//   if (typeof web3 !== 'undefined') {
+//     // Use Mist/MetaMask's provider
+//     web3 = new Web3(web3.currentProvider);
+//   } else {
+//     console.log('No web3? You should consider trying MetaMask!')
+//     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+//     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8546"));
+//     isGeth = true;
+//   }
+
+//   if(isGeth) {
+
+//     //hide unnecessary elements
+//     document.getElementById('myaddress').style.display = 'block';
+//   } else {
+//     document.getElementById('myaddress').style.display = 'none';
+//   }
+// }
+
+// // DEBUGGING PURPOSES
+// function onContentLoaded() {
+//   var accountSpan = document.getElementById("account");
+//   accountSpan.innerHTML =
+
+//     (typeof web3 === "undefined" ? "undefined" : web3.eth.accounts[0]);
+// }
+// document.addEventListener("DOMContentLoaded", onContentLoaded);
+// // END DEBUGGING
+
+// function statusCallback(data) {
+
+//   if(data.result != 'ok') {
+//     document.getElementById('queryStatusLabel').innerHTML = 'Error: ' + data.error;
+//     return;
+//   }
+
+//   document.getElementById('queryStatusLabel').innerHTML = 'Status: Success';
+//   document.getElementById('participants').innerHTML = data.participants;
+//   document.getElementById('gotParticipants').innerHTML = data.gotParticipants;
+//   document.getElementById('payment').innerHTML = web3.fromWei(data.payment, 'ether');
+// }
+
+function generateStudentProf() {
+	let students = ['Brandon', 'Logan', 'Andrew'];
+
+	var student = document.getElementById('studentName').value;
+	console.log(student);
+
+	var address = '0x0'
+
+	for (i = 0; i < students.length; i++) {
+  		if (students[i] == student) {
+  			document.getElementById('studentProfile').innerHTML = student + address;
+  			break;
+  		}
+  	}
+}
+
+// function depositStart() {
+//   document.getElementById('depositLabel').innerHTML = 'Pending';
+
+//   var myaddress = '';
+//   if(isGeth) {
+
+//     myaddress = document.getElementById('myaddress').value;
+//   } else {
+
+//     myaddress = web3.eth.accounts[0]; //remove the [0] for status
+//   }
+
+//   deposit(document.getElementById('address').value, myaddress, document.getElementById('privateResult').value, depositCallback);
+// }
+
+// function depositCallback(data) {
+
+//   if(data.result == 'ok') {
+//    document.getElementById('depositLabel').innerHTML = 'Success';
+//    return;
+//  }
+
+//  document.getElementById('depositLabel').innerHTML = 'Error: ' + data.error;
+// }
+
+</script>  
+
+<body body onload="init();">
+  
+ <!-- Fixed navbar -->
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">SeedScholar</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Sponsor</a></li>
+        <li><a href="student.html">Student</a></li>
+        <li><a href="school.html">School</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+
+<section id="container" class=" container">
+ <div class="row">
+  <div class="col-sm-12">
+   <div class="jumbotron">
+    <h1>SeedScholar</h1>
+    <p>Sponsor a grad, frictionless and from anywhere in the world</p>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Student</h3>
+    </div>
+    <div class="panel-body">
+      <p>Please type in the student's name below to verify their enrollment in the seed program.</p>
+      <form>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="button" name="Generate" value="Generate" onclick="generateStudentProf()">Verify Student</button>
+          </span>
+          <input type="text" class="form-control" id="studentName" name="studentName">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+  	<div class="panel-heading">
+  		<h3 class="panel-title">Student Profile</h3>
+  	</div>
+  	<div class="panel-body">
+  		<span id="studentProfile">
+  		</span> 
+  	</div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Check Student Sponsorship Status</h3>
+    </div>
+    <div class="panel-body">
+     <p>Enter the address of the student to check their seed status.</p>
+     <p>If the student is not yet sponsored you may seed them below.</p>
+     <div id="queryStatusLabel" class="text-warning"></div>
+     <form>
+       <div class="input-group">
+         <span class="input-group-btn">
+           <button class="btn btn-info" type="button" name="Status" value="Status" onclick="getStatus(document.getElementById('address').value, statusCallback)">Check Status</button>
+         </span>
+         <input type="text" class="form-control" id="address">
+       </div>
+     </form>
+   </div>
+ </div>
+
+
+ <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Contract Status</h3>
+  </div>
+  <div class="panel-body">
+    <div class="bs-component">
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#">Seeded:&nbsp;&nbsp;<span class="badge_large"><div name="participants" id="participants">--</div></span></a></li>
+        <li class="active"><a href="#">Sponsor:&nbsp;&nbsp;<span class="badge_large"><div name="gotParticipants" id="gotParticipants">--</div></span></a></li>
+        <li class="active"><a href="#">Funds needed (ETH):&nbsp;&nbsp;<span class="badge_large"><div name="payment" id="payment">--</div></span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="panel-footer">
+   <p>Enter the amount of the donation below.</p>
+   <div id="depositLabel" class="text-warning"></div>
+   <form>
+     <div class="input-group">
+       <span class="input-group-btn">
+         <button class="btn btn-success" type="button" name="join" value="join" onclick="depositStart()">Join Contract</button>
+       </span>
+       <input type="text" class="form-control" id="myaddress" name="myaddress">
+     </div>
+   </form>
+ </div>
+</div>
+
+
+<br /><br />
+
+
+
+</div>
+</div>
+</section>
+<!--main content end-->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- End Bootstrap -->
+</body>
+</html>
