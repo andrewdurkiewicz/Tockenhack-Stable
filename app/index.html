@@ -37,36 +37,28 @@
 
     <script>
 
-// isGeth = false;
+isGeth = false;
 
-// function init() {
+function init() {
 
-//   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-//   if (typeof web3 !== 'undefined') {
-//     // Use Mist/MetaMask's provider
-//     web3 = new Web3(web3.currentProvider);
-//   } else {
-//     console.log('No web3? You should consider trying MetaMask!')
-//     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-//     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8546"));
-//     isGeth = true;
-//   }
-
-//   if(isGeth) {
-
-//     //hide unnecessary elements
-//     document.getElementById('myaddress').style.display = 'block';
-//   } else {
-//     document.getElementById('myaddress').style.display = 'none';
-//   }
-// }
+  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  if (typeof web3 !== 'undefined') {
+    // Use Mist/MetaMask's provider
+    web3 = new Web3(web3.currentProvider);
+  } else {
+    console.log('No web3? You should consider trying MetaMask!')
+    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+    web3 = new Web3(new Web3.providers.HttpProvider("http://127.0.0.1:8545"));
+    isGeth = true;
+  }
+}
 
 // DEBUGGING PURPOSES
 function onContentLoaded() {
   var accountSpan = document.getElementById("account");
   accountSpan.innerHTML =
 
-    (typeof web3 === "undefined" ? "undefined" : web3.eth.accounts[0]);
+    (typeof web3 === "undefined" ? "undefined" : web3.eth.accounts);
 }
 
 document.addEventListener("DOMContentLoaded", onContentLoaded);
@@ -85,12 +77,14 @@ document.addEventListener("DOMContentLoaded", onContentLoaded);
 //   document.getElementById('payment').innerHTML = web3.fromWei(data.payment, 'ether');
 // }
 
-var deployedContract = '0xc78ff8f4270ec355a89bd1a07227b15e44e3ebfb';
+var scholarshipContract = web3.eth.contract([{"constant":true,"inputs":[{"name":"_student","type":"address"}],"name":"getStatus","outputs":[{"name":"","type":"bool"},{"name":"","type":"address"},{"name":"","type":"uint256"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_student","type":"address"},{"name":"_request","type":"uint256"}],"name":"officiateStudent","outputs":[],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_student","type":"address"},{"name":"_round","type":"uint256"},{"name":"_grade","type":"uint256"}],"name":"reportGrade","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":true,"inputs":[],"name":"listStudents","outputs":[{"name":"","type":"address[]"}],"payable":false,"type":"function"},{"constant":false,"inputs":[{"name":"_student","type":"address"},{"name":"_initial","type":"uint256"},{"name":"_roundOne","type":"uint256"},{"name":"_roundTwo","type":"uint256"},{"name":"_roundThree","type":"uint256"}],"name":"seed","outputs":[],"payable":true,"type":"function"},{"constant":false,"inputs":[],"name":"studentWithdrawal","outputs":[],"payable":false,"type":"function"},{"inputs":[{"name":"_school","type":"address"}],"payable":false,"type":"constructor"}]);
+var deployedContract = scholarshipContract.at('0xCBD4A25A1778B463e4379a63694D7810DFc601a1');
 
 function getStatus() {
-	let addressi = ['0xfE02a56127aFfBba940bB116Fa30A3Af10d12f80', 
-					'0x5229Df9B97AbE58AAAd9E426538F28E7be77C58A']
-
+	document.getElementById('seeded').innerHTML = "false";
+	document.getElementById('sponsor').innerHTML = "0x0";
+	document.getElementById('funds').innerHTML = 1;
+	console.log(deployedContract.getStatus('0xf9bef5d2e696a2382138dccaed473bd3d0073d6d'));
 }
 
 function generateStudentProf() {
@@ -99,41 +93,28 @@ function generateStudentProf() {
 	var student = document.getElementById('studentName').value;
 	console.log(student);
 	var studentImage = ['student0.jpg', 'student2.jpg'];
-	var address = '0x0'
+	var address = ['0xf9bef5d2e696a2382138dccaed473bd3d0073d6d',
+				   '0x1c1fac70ea326113e68a2386467e173a3675b1fd']
 
 	for (i = 0; i < students.length; i++) {
   		if (students[i] == student) {
-  			document.getElementById('studentProfile').innerHTML = student + '\n' + address;
+  			document.getElementById('studentProfile').innerHTML = "Student name: " + student;
   			document.getElementById('studentImage').setAttribute('src', studentImage[i]);
+  			let studentsAddr = address[i];
+  			document.getElementById('studentAddress').innerHTML = "Student Address: \n" + studentsAddr;
+  			document.getElementById('address').value = studentsAddr;
   			break;
   		}
   	}
 }
 
-// function depositStart() {
-//   document.getElementById('depositLabel').innerHTML = 'Pending';
+function brandonJacobs() {
+  	document.getElementById('studentName').value = 'Brandon Jacobs'
+}
 
-//   var myaddress = '';
-//   if(isGeth) {
-
-//     myaddress = document.getElementById('myaddress').value;
-//   } else {
-
-//     myaddress = web3.eth.accounts[0]; //remove the [0] for status
-//   }
-
-//   deposit(document.getElementById('address').value, myaddress, document.getElementById('privateResult').value, depositCallback);
-// }
-
-// function depositCallback(data) {
-
-//   if(data.result == 'ok') {
-//    document.getElementById('depositLabel').innerHTML = 'Success';
-//    return;
-//  }
-
-//  document.getElementById('depositLabel').innerHTML = 'Error: ' + data.error;
-// }
+function janeYoo() {
+	document.getElementById('studentName').value = 'Jane Yoo'
+}
 
 </script>  
 
@@ -156,7 +137,7 @@ function generateStudentProf() {
         <li><a href="#">Sponsor</a></li>
         <li><a href="student.html">Student</a></li>
         <li><a href="school.html">School</a></li>
-        <li><a href="about.html">About</a></li>
+         <li><a href="about.html">About</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
@@ -180,7 +161,7 @@ function generateStudentProf() {
     	</span>
       <p>Please type in the student's name below to verify their enrollment in the seed program.</p>
       <p>
-      	Suggestions: Brandon Jacobs, Jane Yoo
+      	Suggestions: <a onclick='brandonJacobs()'>Brandon Jacobs</a>, <a onclick='janeYoo()' >Jane Yoo</a>
       </p>
       <form>
         <div class="input-group">
@@ -198,11 +179,13 @@ function generateStudentProf() {
   		<h3 class="panel-title">Student Profile</h3>
   	</div>
   	<div class="panel-body">
+  		<center>
   		<span id="studentProfile">
   		</span> 
-  		<center>
   		<img id="studentImage" height='170' width='250' src="" />
   		</center>
+  		<span id="studentAddress">
+  		</span>
   	</div>
   </div>
 
@@ -218,7 +201,7 @@ function generateStudentProf() {
      <form>
        <div class="input-group">
          <span class="input-group-btn">
-           <button class="btn btn-info" type="button" name="Status" value="Status" onclick="getStatus(document.getElementById('address').value, statusCallback)">Check Status</button>
+           <button class="btn btn-info" type="button" name="Status" value="Status" onclick="getStatus()">Check Status</button>
          </span>
          <input type="text" class="form-control" id="address">
        </div>
@@ -226,6 +209,7 @@ function generateStudentProf() {
    </div>
  </div>
 
+<!-- getStatus(document.getElementById('address').value, statusCallback) -->
 
  <div class="panel panel-default">
   <div class="panel-heading">
@@ -234,21 +218,24 @@ function generateStudentProf() {
   <div class="panel-body">
     <div class="bs-component">
       <ul class="nav nav-pills">
-        <li class="active"><a href="#">Seeded:&nbsp;&nbsp;<span class="badge_large"><div name="participants" id="participants">--</div></span></a></li>
-        <li class="active"><a href="#">Sponsor:&nbsp;&nbsp;<span class="badge_large"><div name="gotParticipants" id="gotParticipants">--</div></span></a></li>
-        <li class="active"><a href="#">Funds needed (ETH):&nbsp;&nbsp;<span class="badge_large"><div name="payment" id="payment">--</div></span></a></li>
+        <li class="active"><a href="#">Seeded:&nbsp;&nbsp;<span class="badge_large"><div name="participants" id="seeded">--</div></span></a></li>
+        <li class="active"><a href="#">Sponsors:&nbsp;&nbsp;<span class="badge_large"><div name="gotParticipants" id="sponsor">--</div></span></a></li>
+        <li class="active"><a href="#">Funds needed (ETH):&nbsp;&nbsp;<span class="badge_large"><div name="payment" id="funds">--</div></span></a></li>
       </ul>
     </div>
   </div>
   <div class="panel-footer">
-   <p>Enter the amount of the donation below.</p>
+   <p>Enter the amount awarded per sponsorship rounds below. Ensure that your total adds up to the amount the student needs.</p>
    <div id="depositLabel" class="text-warning"></div>
    <form>
      <div class="input-group">
-       <span class="input-group-btn">
+     Initial Seed: <input type="text" class="form-control" id="myaddress2" name="myaddress2"><br />
+     Round One: <input type="text" class="form-control" id="myaddress3" name="myaddress3"><br />
+     Round Two: <input type="text" class="form-control" id="myaddress4" name="myaddress4"><br />
+     Round Three: <input type="text" class="form-control" id="myaddress5" name="myaddress5"><br /><br /><br />
+       <!-- <span class="input-group-btn"> -->
          <button class="btn btn-success" type="button" name="join" value="join" onclick="depositStart()">Join Contract</button>
-       </span>
-       <input type="text" class="form-control" id="myaddress" name="myaddress">
+       <!-- </span> -->
      </div>
    </form>
  </div>

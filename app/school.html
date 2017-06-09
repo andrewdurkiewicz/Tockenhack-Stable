@@ -35,88 +35,6 @@
     }</style>
   </head>
 
-    <script>
-
-isGeth = false;
-
-function init() {
-
-  // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-  if (typeof web3 !== 'undefined') {
-    // Use Mist/MetaMask's provider
-    web3 = new Web3(web3.currentProvider);
-  } else {
-    console.log('No web3? You should consider trying MetaMask!')
-    // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-    web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8546"));
-    isGeth = true;
-  }
-
-  if(isGeth) {
-
-    //hide unnecessary elements
-    document.getElementById('myaddress').style.display = 'block';
-  } else {
-    document.getElementById('myaddress').style.display = 'none';
-  }
-}
-
-// DEBUGGING PURPOSES
-function onContentLoaded() {
-  var accountSpan = document.getElementById("account");
-  accountSpan.innerHTML =
-
-    (typeof web3 === "undefined" ? "undefined" : web3.eth.accounts[0]);
-}
-document.addEventListener("DOMContentLoaded", onContentLoaded);
-// END DEBUGGING
-
-function statusCallback(data) {
-
-  if(data.result != 'ok') {
-    document.getElementById('queryStatusLabel').innerHTML = 'Error: ' + data.error;
-    return;
-  }
-
-  document.getElementById('queryStatusLabel').innerHTML = 'Status: Success';
-  document.getElementById('participants').innerHTML = data.participants;
-  document.getElementById('gotParticipants').innerHTML = data.gotParticipants;
-  document.getElementById('payment').innerHTML = web3.fromWei(data.payment, 'ether');
-}
-
-function generatePrivate() {
-
-  var key = random_key();
-  document.getElementById('privateResult').value = key.toString();
-}
-
-function depositStart() {
-  document.getElementById('depositLabel').innerHTML = 'Pending';
-
-  var myaddress = '';
-  if(isGeth) {
-
-    myaddress = document.getElementById('myaddress').value;
-  } else {
-
-    myaddress = web3.eth.accounts[0]; //remove the [0] for status
-  }
-
-  deposit(document.getElementById('address').value, myaddress, document.getElementById('privateResult').value, depositCallback);
-}
-
-function depositCallback(data) {
-
-  if(data.result == 'ok') {
-   document.getElementById('depositLabel').innerHTML = 'Success';
-   return;
- }
-
- document.getElementById('depositLabel').innerHTML = 'Error: ' + data.error;
-}
-
-</script>  
-
 <body body onload="init();">
   
  <!-- Fixed navbar -->
@@ -133,7 +51,7 @@ function depositCallback(data) {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#">Sponsor</a></li>
+        <li><a href="index.html">Sponsor</a></li>
         <li><a href="student.html">Student</a></li>
         <li><a href="school.html">School</a></li>
         <li><a href="about.html">About</a></li>

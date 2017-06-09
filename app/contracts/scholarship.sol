@@ -9,7 +9,8 @@ contract Scholarship {
         address student;    // The individual seeking funds.
         uint startTerm;     // The start date of the seed rounds, ends the ability to contribute.
         bool completed;     // The funding is complete.
-
+        
+        uint fundsRequest;  // The amount the student needs.
         uint balance;       // The amount in the contract that will be returned to sponsor if unclaimed.
         uint initial;       // Initial round of funding (at beginning of term.)
         uint roundOne;      // Round one of funding after first grade report.
@@ -53,10 +54,25 @@ contract Scholarship {
         school = _school;
     }
     
-    function officiateStudent(address _student) {
+    function officiateStudent(address _student, uint _request) {
         if (msg.sender != school) throw; // Only school official can validate student.
         validatesFor[school][_student] = true;
         students.push(_student);
+        
+        SeedFund sf = seedFunds[_student];
+        sf.fundsRequest = _request; // Eventually the student will be able to do this themselves.
+    }
+    
+    function getStatus(address _student) constant returns (bool, address, uint) {
+        if (!validatesFor[school][_student]) throw;
+        bool seeded;
+        
+        SeedFund sf = seedFunds[_student];
+        if(sf.balance != 0) seeded = true;
+        address sponsor = sf.sponsor;
+        uint funds = sf.fundsRequest;
+        
+        return(seeded, sponsor, funds);
     }
     
     function seed(address _student, 
