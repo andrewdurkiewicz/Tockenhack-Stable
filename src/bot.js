@@ -91,10 +91,10 @@ function Arts(session) {
       }],
     }))
   let body = `\"Art is the most intense mode of individualism that the world has known.\" \n-Oscar Wilde
-  \nYou have chosen to aid a student studying fine arts. Below are three candidates who fit this selection:`
+  \nYou have chosen to aid a student studying fine arts. Below are two candidates who fit this selection:`
   let controls = [
-    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
-    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Brandon Jacobs\nHarvard: Dance', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Yoo\nBrown: Painting', action: 'Webview::https://lsaether.github.io/tokenhack/'},
     {type: 'button', label: 'Go Back', value: 'Init'}]
   session.reply(SOFA.Message({
     body: body,
@@ -108,14 +108,14 @@ function Physics(session) {
         "type": "image",
         "url": "physics.jpeg"
 
-      }],
+      }], 
       showKeyboard: false,
     }))
   let body = `\"Not only is the Universe stranger than we think, it is stranger than we can think.\" \n-Werner Heisenberg
-  \nYou have chosen to aid a student studying physics. Below are three candidates who fit this selection:`
+  \nYou have chosen to aid a student studying physics. Below are two candidates who fit this selection:`
   let controls = [
-    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
-    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Brandon Jacobs\nHarvard: Tunneling', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Yoo\nBrown: Radiation', action: 'Webview::https://lsaether.github.io/tokenhack/'},
     {type: 'button', label: 'Go Back', value: 'Init'}]
   session.reply(SOFA.Message({
     body: body,
@@ -132,10 +132,10 @@ function Chemistry(session) {
       showKeyboard: false,
     }))
   let body = `\"We must reason in natural philosophy not from what we hope, or even expect, but from what we perceive.\" \n-Humphry Davy
-  \nYou have chosen to aid a student studying chemistry. Below are three candidates who fit this selection:`
+  \nYou have chosen to aid a student studying chemistry. Below are two candidates who fit this selection:`
   let controls = [
-    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
-    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Brandon Jacobs\nHarvard: Chemistry', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Yoo\nBrown: Solids', action: 'Webview::https://lsaether.github.io/tokenhack/'},
     {type: 'button', label: 'Go Back', value: 'Init'}]
   session.reply(SOFA.Message({
     body: body,
@@ -153,10 +153,10 @@ function Biology(session) {
       showKeyboard: false,
     }))
   let body = `\"Biology is the study of complicated things that have the appearance of having been designed with a purpose.\" \n-Richard Dawkins
-  \nYou have chosen to aid a student studying biology. Below are three candidates who fit this selection:`
+  \nYou have chosen to aid a student studying biology. Below are two candidates who fit this selection:`
   let controls = [
-    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
-    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Brandon Jacobs\nHarvard: CRISPR', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Yoo\nBrown: Stem-Cells', action: 'Webview::https://lsaether.github.io/tokenhack/'},
     {type: 'button', label: 'Go Back', value: 'Init'}]
   session.reply(SOFA.Message({
     body: body,
@@ -172,10 +172,10 @@ function Mathematics(session) {
         "url": "math.jpeg"
       }]}))
   let body = `\"Mathematics is the music of reason.\" \n-James Joseph Sylvester
-  \nYou have chosen to aid a student studying mathematics. Below are three candidates who fit this selection:`
+  \nYou have chosen to aid a student studying mathematics. Below are two candidates who fit this selection:`
   let controls = [
-    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
-    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Brandon Jacobs\nHarvard: Geometry', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Yoo\nBrown: Reduction', action: 'Webview::https://lsaether.github.io/tokenhack/'},
     {type: 'button', label: 'Go Back', value: 'Init'}]
   session.reply(SOFA.Message({
         body: body,
@@ -189,10 +189,10 @@ function Business(session) {
       }],
       showKeyboard: false,}))
   let body = `\"If you want to succeed you should strike out on new paths, rather than travel the worn paths of accepted success.\" \n-John D. Rockefeller
-  \nYou have chosen to aid a student studying business. Below are three candidates who fit this selection:`
+  \nYou have chosen to aid a student studying business. Below are two candidates who fit this selection:`
   let controls = [
-    {type: 'button', label: 'Brandon Jacobs\nSenior: Harvard Business', action: 'Webview::https://lsaether.github.io/tokenhack/'},
-    {type: 'button', label: 'Jane Smith', value: 'Arts'},
+    {type: 'button', label: 'Brandon Jacobs\nHarvard: Patents', action: 'Webview::https://lsaether.github.io/tokenhack/'},
+    {type: 'button', label: 'Jane Yoo\nBrown: Economics', action: 'Webview::https://lsaether.github.io/tokenhack/'},
     {type: 'button', label: 'Go Back', value: 'Init'}]
   session.reply(SOFA.Message({
     body: body,
