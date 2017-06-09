@@ -61,15 +61,16 @@
 //   }
 // }
 
-// // DEBUGGING PURPOSES
-// function onContentLoaded() {
-//   var accountSpan = document.getElementById("account");
-//   accountSpan.innerHTML =
+// DEBUGGING PURPOSES
+function onContentLoaded() {
+  var accountSpan = document.getElementById("account");
+  accountSpan.innerHTML =
 
-//     (typeof web3 === "undefined" ? "undefined" : web3.eth.accounts[0]);
-// }
-// document.addEventListener("DOMContentLoaded", onContentLoaded);
-// // END DEBUGGING
+    (typeof web3 === "undefined" ? "undefined" : web3.eth.accounts[0]);
+}
+
+document.addEventListener("DOMContentLoaded", onContentLoaded);
+// END DEBUGGING
 
 // function statusCallback(data) {
 
@@ -84,17 +85,26 @@
 //   document.getElementById('payment').innerHTML = web3.fromWei(data.payment, 'ether');
 // }
 
+var deployedContract = '0xc78ff8f4270ec355a89bd1a07227b15e44e3ebfb';
+
+function getStatus() {
+	let addressi = ['0xfE02a56127aFfBba940bB116Fa30A3Af10d12f80', 
+					'0x5229Df9B97AbE58AAAd9E426538F28E7be77C58A']
+
+}
+
 function generateStudentProf() {
-	let students = ['Brandon', 'Logan', 'Andrew'];
+	let students = ['Brandon Jacobs', 'Jane Yoo'];
 
 	var student = document.getElementById('studentName').value;
 	console.log(student);
-
+	var studentImage = ['student0.jpg', 'student2.jpg'];
 	var address = '0x0'
 
 	for (i = 0; i < students.length; i++) {
   		if (students[i] == student) {
-  			document.getElementById('studentProfile').innerHTML = student + address;
+  			document.getElementById('studentProfile').innerHTML = student + '\n' + address;
+  			document.getElementById('studentImage').setAttribute('src', studentImage[i]);
   			break;
   		}
   	}
@@ -166,7 +176,12 @@ function generateStudentProf() {
       <h3 class="panel-title">Student</h3>
     </div>
     <div class="panel-body">
+    	<span id='account'>
+    	</span>
       <p>Please type in the student's name below to verify their enrollment in the seed program.</p>
+      <p>
+      	Suggestions: Brandon Jacobs, Jane Yoo
+      </p>
       <form>
         <div class="input-group">
           <span class="input-group-btn">
@@ -185,6 +200,9 @@ function generateStudentProf() {
   	<div class="panel-body">
   		<span id="studentProfile">
   		</span> 
+  		<center>
+  		<img id="studentImage" height='170' width='250' src="" />
+  		</center>
   	</div>
   </div>
 
@@ -245,6 +263,9 @@ function generateStudentProf() {
 </div>
 </section>
 <!--main content end-->
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="js/web3.js"></script>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="js/jquery.min.js"></script>
